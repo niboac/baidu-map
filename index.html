@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      body,
+      html,
+      #allmap {
+        width: 200vw;
+        height: 200vh;
+
+        overflow: hidden;
+        margin: 0;
+        font-family: '微软雅黑';
+      }
+      #app {
+        margin-left: -50vw;
+        margin-top: -50vh;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=duLDGh0pSPMGMvV5pPifujFHZpuxl0Ou"
+    ></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <title>自定义百度地图</title>
+    <script type="module" crossorigin src="./assets/index-c4f6b745.js"></script>
+    <link rel="stylesheet" href="./assets/index-8dab139c.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      HTMLCanvasElement.prototype.getContext = (function (origFn) {
+        return function (type, attributes) {
+          if (type === 'webgl') {
+            attributes = Object.assign({}, attributes, {
+              preserveDrawingBuffer: true
+            })
+          }
+          return origFn.call(this, type, attributes)
+        }
+      })(HTMLCanvasElement.prototype.getContext)
+    </script>
+
+    
+  </body>
+</html>
